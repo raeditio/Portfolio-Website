@@ -11,6 +11,10 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        'times': ['"Times New Roman"', 'serif'],
+        'orbitron': ['Orbitron', 'sans-serif'],
+      },
     },
   },
   plugins: [],
