@@ -133,7 +133,7 @@ ul li {
     }
     
     .resume-container {
-        margin: 40px auto;
+        margin: 35px auto;
         width: 90%;
         font-family: 'Times New Roman', Times, serif;
         font-size: calc(12pt - var(--font-reduction));

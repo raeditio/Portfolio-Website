@@ -27,16 +27,22 @@ export default function Resume() {
             <div className="resume-container">
                 <header className="resume-header">
                     <h1>Ryan Jung</h1>
-                    <p>Vancouver, British Columbia, Canada | {' '}
+                    <div className="flex flex-row justify-center gap-2 border-b-2 border-b-white print:border-b-gray-500">
+                        <p>Vancouver, British Columbia, Canada | {' '}</p>
                         <Link href="mailto:ryankwjung@gmail.com">ryankwjung@gmail.com</Link> | {' '}
                         <Link href="tel:604-726-1758">(604) 726-1758</Link> | {' '}
+                        <Link href="https://github.com/raeditio" className="flex flex-row gap-x-1">
+                            <Image src="/github.svg" alt="GitHub" width="16" height="16" className="invert print:invert-0" />
+                            /raeditio 
+                        </Link>
+                        <p>|</p>
                         <span className="resume-linkedin-container">
                             <Image src="/linkedin.png" alt="LinkedIn" width="20" height="20" />
                             <Link href="https://www.linkedin.com/in/ryanjung0" target="_blank" rel="noopener noreferrer">
                                 in/ryanjung0
                             </Link>
                         </span>
-                    </p>
+                    </div>
                 </header>
 
                 <section className="resume-section">

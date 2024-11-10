@@ -1,22 +1,220 @@
-import Image from 'next/image'
+'use client'
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
-  let intro="mx-96 text-lg text-white";
+  const languageRefs = useRef([]); // to store references to each language icon
+  const [isVisible, setIsVisible] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = languageRefs.current.indexOf(entry.target);
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => {
+              const newVisibility = [...prev];
+              newVisibility[index] = true;
+              return newVisibility;
+            });
+          }
+        });
+      },
+      { threshold: 0.1 } // Adjust the threshold as needed
+    );
+
+    languageRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      <div className="bg-sky-950 flex flex-row items-center">
-        <h1 className="text-left ml-96 mt-16 text-7xl text-white">Welcome to my website!</h1>
-        <Image src="/landingPage.png" alt="landing page" width={1920/2} height={1080/2} className="mt-16 flex ml-auto rounded-bl-3xl"/>
+      <div className="text-center mt-52 text-white">
+        <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">Ryan Jung</h1>
+        <div className="text-lg text-zinc-400">
+          <p className="text-zinc-300 mb-2">📍Vancouver, BC | Software Engineer</p>
+          <p>AI, Embedded Systems, Web Dev</p>
+          <p>Home IoT integration</p>
+          <div className="flex justify-center gap-6 mt-6">
+            <Link href="https://github.com/raeditio" target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 p-4 rounded-lg w-32 h-12 bg-gradient-to-t from-neutral-300 via-30% via-indigo-600 to-90% to-purple-500 brightness-90
+                hover:brightness-100 hover:saturate-200 hover:transition-all hover:ease-in-out">
+              <Image src="/github.svg" alt="GitHub" width={24} height={24} className="grayscale brightness-150" />
+              <span className='text-white'>GitHub</span>
+            </Link>
+            <Link href="https://www.linkedin.com/in/ryanjung0/" target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 p-4 rounded-lg w-32 h-12 bg-gradient-to-t from-neutral-300 via-30% via-indigo-600 to-90% to-purple-500 brightness-90
+                hover:brightness-100 hover:saturate-200 hover:transition-all hover:ease-in-out">
+              <Image src="/linkedin_white.png" alt="LinkedIn" width={23} height={23} className="saturate-200" />
+              <span className='text-white'>LinkedIn</span>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="bg-gradient-to-b from-sky-950 to-gray-700 h-72">
-        <p className={ intro }>I am a 6th year Electrical Engineering student at University of British Columbia Vancouver.</p>
-        <p className={ intro }>I am a software enthusiast with a growing passion in AI, embedded systems and home IoT integration</p>
-        <p className={ intro }>I am currently seeking a full-time position in software development</p>
-        <p className={ intro }>Feel free to check out my projects and contact me for any inquiries</p>
-        <p className={ intro }>Thank you for visiting!</p>
-        <p className={ intro }>- Ryan Jung</p>
+
+      {/* Computer Languages Section */}
+      <div className='flex justify-center mt-16'>
+        {/* Encasing */}
+        <div className="flex flex-col items-center justify-center w-1/3 h-96 p-2 rounded-2xl bg-radial-gradient overflow-hidden">
+          <div className="flex flex-row items-center justify-center border-b-2 border-neutral-800 -translate-x-5">
+            {/* HTML Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 transform ${
+                isVisible[0] ? '-translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : 'translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-orange-500/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-orange-400/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/html5.webp" alt="HTML5" width={50} height={50} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">HTML</span>
+            </div>
+            {/* JavaScript Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-75 transform ${
+                isVisible[0] ? '-translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : 'translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-yellow-400/10
+                to-70% to-neutral-900/40 shadow-xl shadow-yellow-500/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/javascript.png" alt="JavaScript" width={50} height={50} className="saturate-200" />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">JavaScript</span>
+            </div>
+            {/* TypeScript Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-100 transform ${
+                isVisible[0] ? '-translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : 'translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-600/10
+                to-70% to-neutral-900/40 shadow-xl shadow-blue-500/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/ts.svg" alt="TypeScript" width={50} height={50} className="saturate-200" />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">TypeScript</span>
+            </div>
+            {/* CSS Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-150 transform ${
+                isVisible[0] ? '-translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : 'translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-700/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-blue-600/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/css.svg" alt="CSS3" width={40} height={40} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">CSS</span>
+            </div>
+            {/* React Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-200 transform ${
+                isVisible[0] ? '-translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : 'translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-500/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-blue-500/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/react.svg" alt="React" width={50} height={50} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">React</span>
+            </div>
+            {/* Next.js Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-300 transform ${
+                isVisible[0] ? '-translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : 'translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-gray-500/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-gray-500/30 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/nextjs.svg" alt="Next.js" width={50} height={50} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">Next.js</span>
+            </div>
+          </div>
+          {/* Row 2 */}
+          <div className="flex flex-row border-b-2 border-neutral-900 translate-x-5">
+            {/* C Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-300 transform ${
+                isVisible[0] ? 'translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : '-translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-500/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-blue-300/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/c.svg" alt="C" width={50} height={50} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">C</span>
+            </div>
+            {/* C++ Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-200 transform ${
+                isVisible[0] ? 'translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : '-translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-400/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-blue-300/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/c++.svg" alt="C++" width={50} height={50} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">C++</span>
+            </div>
+            {/* Python Icon */}
+            <div className="flex flex-col">
+              <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-150 transform ${
+                isVisible[0] ? 'translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : '-translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+                <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-yellow-400/10
+                  via-blue-950/30 to-70% to-neutral-900/40 shadow-xl shadow-yellow-500/20 aspect-square justify-center items-center flex w-24 h-24">
+                  <Image src="/python.png" alt="Python3" width={50} height={50} className="saturate-150" />
+                </div>
+                <span className="text-zinc-200 text-sm mt-1">Python</span>
+              </div>
+            </div>
+            {/* PyTorch Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-100 transform ${
+                isVisible[0] ? 'translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : '-translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-red-400/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-red-500/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/pytorch.png" alt="PyTorch" width={50} height={50} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">PyTorch</span>
+            </div>
+            {/* TensorFlow Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 delay-75 transform ${
+                isVisible[0] ? 'translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : '-translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-orange-400/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-orange-500/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/tf.webp" alt="TensorFlow" width={40} height={40} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">TensorFlow</span>
+            </div>
+            {/* OpenCV Icon */}
+            <div ref={(el) => (languageRefs.current[0] = el)}
+              className={`transition-transform duration-700 transform ${
+                isVisible[0] ? 'translate-x-1/8 opacity-100 flex flex-col items-center justify-center p-2 hover:-translate-y-4 hover:ease-out hover:delay-0 hover:duration-150' : '-translate-x-96 scale-75 opacity-0 flex flex-col items-center justify-center p-2'
+              }`}>
+              <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-cyan-400/10
+                  to-70% to-neutral-900/40 shadow-xl shadow-teal-500/20 aspect-square justify-center items-center flex w-24 h-24">
+                <Image src="/opencv.webp" alt="OpenCV" width={45} height={45} />
+              </div>
+              <span className="text-zinc-200 text-sm mt-1">OpenCV</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </>
+      <div className="flex flex-col items-center -translate-x-48 mt-16">
+        <div clasName="justify-start">
+          <h1 className="text-neutral-300 text-3xl underline decoration-zinc-500">Experience</h1>
+          <h1>Electrical Calibration and Software Engineer</h1>
+          <p>Pylon Electronics | October 2023 - September 2024</p>
+          <ul className="list-disc ml-2">
+              <li>Developed a machine vision software with GUI for inputting and outputting digital screen readouts</li>
+              <li>Reduced overhead by 95% by creating VBA automated calibration procedures</li>
+              <li>Increased torque calibration efficiency by automating over Bluetooth using Serial Port Protocol</li>
+              <li>Designed and tested a cost-effective, automated tensiometer calibrator for precision testing through SolidWorks</li>
+          </ul>
+        </div>
+      </div>
+  </>
   );
 }
