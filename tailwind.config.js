@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwind-scrollbar');
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,6 +9,19 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        '128': '32rem',
+        '256': '48rem',
+      },
+      width: {
+        '128': '32rem',
+        '256': '48rem',
+        '384': '52rem',
+        '512': '64rem',
+        '1024': '96rem',
+        '2048': '128rem',
+        '2560': '160rem',
+      },
       backgroundImage: {
         'radial-gradient': 'radial-gradient(169.40% 119.55% at 54.76% 6.29%, #262626 10%, #0a0a0a 70%)',
       },
@@ -28,5 +43,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [plugin],
+  variants: {
+    scrollbar: ['rounded'],
+  },
 };

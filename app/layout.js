@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Orbitron, Manrope } from 'next/font/google';
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar";
 
 const orbitron = Orbitron({ subsets: ['latin'] });
 

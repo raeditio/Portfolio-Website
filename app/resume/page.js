@@ -23,7 +23,11 @@ export default function Resume() {
 
     return (
         <>
-            <button className="resume-download-button" onClick={() => printWithFilename("Ryan Jung_Resume")}>Download as PDF</button>
+            <button
+                className="resume-download-button"
+                onClick={() => printWithFilename("Ryan Jung_Resume")}>
+                Download as PDF
+            </button>
             <div className="resume-container">
                 <header className="resume-header">
                     <h1>Ryan Jung</h1>
@@ -32,7 +36,7 @@ export default function Resume() {
                         <Link href="mailto:ryankwjung@gmail.com">ryankwjung@gmail.com</Link> | {' '}
                         <Link href="tel:604-726-1758">(604) 726-1758</Link> | {' '}
                         <Link href="https://github.com/raeditio" className="flex flex-row gap-x-1">
-                            <Image src="/github.svg" alt="GitHub" width="16" height="16" className="invert print:invert-0" />
+                            <Image src="/github.svg" alt="GitHub" width="16" height="16" className="print:invert" />
                             /raeditio 
                         </Link>
                         <p>|</p>

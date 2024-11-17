@@ -1,35 +1,51 @@
+'use client'
+
+import { useState } from "react";
+import ContactForm from "../components/Contact/ContactForm";
+import ClassicContactForm from "../components/Contact/ClassicContactForm";
+
+async function SendEmails(data) {
+  const response = await fetch('/api/sendEmails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  return await response.json();
+}
+
 export default function Contact() {
+  const [isClassicForm, setIsClassicForm] = useState(false);
+
+  const handleSubmission = async (data) => {
+    try {
+      const response = await SendEmails(data);
+      // console.log(response.message); // "Emails sent successfully!"
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  const toggleForm = () => {
+    setIsClassicForm(!isClassicForm);
+  };
+
   return (
-    <div className="flex flex-col items-center mt-44 min-h-screen text-center text-slate-200">
-      <h1 className="text-4xl font-bold mb-4 font-mono">Contact Me</h1>
-      <div className="w-full max-w-md text-left">
-        <label className="block mb-2">
-          Name:
-          <input
-            type="text"
-            name="name"
-            className="border border-gray-300 rounded p-2 w-full"
-          />
-        </label>
-        <label className="block mb-2">
-          Email:
-          <input
-            type="email"
-            name="email"
-            className="border border-gray-300 rounded p-2 w-full"
-          />
-        </label>
-        <label className="block mb-2">
-          Message:
-          <textarea
-            name="message"
-            className="border border-gray-300 rounded p-2 w-full h-48"
-          />
-        </label>
-        <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-          Submit
-        </button>
-      </div>
+    <div className="flex flex-col items-center mt-48">
+      <button
+        onClick={toggleForm}
+        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        {isClassicForm ? "Switch to DM Contact Form" : "Switch to Classic Contact Form"}
+      </button>
+
+      {isClassicForm ? (
+        <ClassicContactForm onSubmit={handleSubmission} />
+      ) : (
+        <ContactForm onSubmit={handleSubmission} />
+      )}
     </div>
   );
 }

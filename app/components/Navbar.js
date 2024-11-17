@@ -27,9 +27,9 @@ export default function Navbar() {
         <Link href="/" className="-translate-x-96 font-bold font-orbitron text-red-600 text-lg print:hidden">
             {brand}
         </Link>
-        <div className="flex items-center gap-5 text-sm text-neutral-300 translate-x-96">
+        <div className="nav-links flex items-center gap-5 text-sm text-neutral-300 translate-x-96">
           {/* project */}
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <Link
               href="/projects"
               className="project p-1 rounded hover:bg-gray-800"
@@ -45,7 +45,7 @@ export default function Navbar() {
               <Link href="/project/ifr6000"
                 className="hover:underline hover:decoration-neutral-700 hover:transition-all hover:duration-300">IFR 6000</Link>
             </div>
-          </div>
+          </div> */}
           <Link
             href="/contact"
             className="contact p-1 rounded hover:bg-gray-800"
@@ -61,7 +61,7 @@ export default function Navbar() {
               className="hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300">Contact Form</Link>
           </div>
           <Link href="/resume" onMouseEnter={setHoverOff} className="p-1 rounded hover:text-indigo-400 transition-all duration-200">Resume</Link>
-          <Link href="/about" onMouseEnter={setHoverOff} className="p-1 rounded hover:text-indigo-400 transition-all duration-200">About</Link>
+          {/* <Link href="/about" onMouseEnter={setHoverOff} className="p-1 rounded hover:text-indigo-400 transition-all duration-200">About</Link> */}
           <Link href="https://github.com/raeditio" target="_blank" rel="noopener noreferrer">
             <Image src="/github.svg" alt="GitHub" width="20" height="20"
               className="grayscale brightness-80 self-center hover:brightness-100" />
