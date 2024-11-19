@@ -40,8 +40,7 @@ export default function Home() {
             <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">Ryan Jung</h1>
             <div className="text-lg text-zinc-400">
               <p className="text-zinc-300 mb-2">📍Vancouver, BC | Software Engineer</p>
-              <p>AI, Embedded Systems, Web Dev</p>
-              <p>Home IoT integration</p>
+              <p>AI, Embedded Systems, Web, IoT</p>
               <div className="flex justify-center gap-6 mt-12">
                 <Link href="https://github.com/raeditio" target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 p-4 rounded-lg w-32 h-12 bg-gradient-to-t from-neutral-300 via-30% via-indigo-600 to-90% to-purple-500 brightness-90
