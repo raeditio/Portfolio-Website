@@ -1,3 +1,5 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 import { Orbitron, Manrope } from 'next/font/google';
 import Navbar from "./components/Navbar/Navbar";
@@ -17,6 +19,8 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
