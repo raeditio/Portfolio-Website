@@ -52,7 +52,7 @@ export default function Home() {
                 <Link href="https://www.linkedin.com/in/ryanjung0/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 p-4 rounded-lg w-32 h-12 bg-gradient-to-t from-neutral-300 via-30% via-indigo-600 to-90% to-purple-500 brightness-90
                   hover:brightness-100 hover:saturate-200 hover:transition-all hover:ease-in-out">
-                  <Image src="/linkedin_white.png" alt="LinkedIn" width={23} height={23} className="saturate-200" />
+                  <Image src="/linkedin_white.svg" alt="LinkedIn" width={23} height={23} className="saturate-200" />
                   <span className='text-white'>LinkedIn</span>
                 </Link>
               </div>
@@ -75,7 +75,7 @@ export default function Home() {
                 }`}>
                 <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-orange-500/10
                     to-70% to-neutral-900/40 shadow-xl shadow-orange-400/20 aspect-square justify-center items-center flex w-24 h-24">
-                  <Image src="/html5.webp" alt="HTML5" width={50} height={50} />
+                  <Image src="/html5.svg" alt="HTML5" width={50} height={50} />
                 </div>
                 <span className="text-zinc-200 text-sm mt-1">HTML</span>
               </div>

@@ -10,7 +10,6 @@ export default function Profile() {
                 alt="Profile Picture"
                 width={48} // Set fixed dimensions
                 height={48}
-                className="object-cover"
                 />
             </div>
         </div>
