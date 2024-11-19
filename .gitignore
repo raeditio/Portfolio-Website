@@ -19,6 +19,8 @@
 /public/
 Email/
 api/
+about/
+projects/
 
 # production
 /build
