@@ -16,9 +16,6 @@
 # next.js
 /.next/
 /out/
-public/
-Email/
-api/
 about/
 
 # production
