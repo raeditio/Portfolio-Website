@@ -22,7 +22,7 @@ export default function ClassicContactForm({ onSubmit }) {
   ];
 
   return (
-    <div className="flex flex-col items-center w-full mt-24 text-center text-slate-200">
+    <div className="flex flex-col items-center w-full min-w-80 mt-24 text-center text-slate-200">
       <h1 className="text-4xl font-bold mb-4 font-mono">Contact Me</h1>
       <div className="w-full max-w-md text-left">
         {formFields.map((field, index) => (

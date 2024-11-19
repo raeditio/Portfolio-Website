@@ -20,8 +20,8 @@ export default function Navbar() {
   return (
     <nav
       className={isHovered ? 
-        "flex bg-neutral-800 justify-center align-center p-5 fixed top-0 w-full z-10 pb-12 transition-all duration-300" : 
-        "flex bg-neutral-900 justify-center align-center p-5 fixed top-0 w-full z-10"}
+        "flex bg-neutral-800 justify-center align-center p-5 fixed top-0 w-full w-min-512 z-10 pb-12 transition-all duration-300" : 
+        "flex bg-neutral-900 justify-center align-center p-5 fixed top-0 w-full w-min-512 z-10"}
       onMouseLeave={setHoverOff}
     >
         <Link href="/" className="-translate-x-96 font-bold font-orbitron text-red-600 text-lg print:hidden">

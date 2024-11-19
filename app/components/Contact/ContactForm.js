@@ -67,7 +67,7 @@ export default function ContactForm({ onSubmit }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-2560 mt-4">
+    <div className="flex flex-col items-center justify-center w-full min-w-2300 mt-4">
 
       <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-black w-1/2 h-256 rounded-[32px] border-8 border-gray-700 overflow-hidden text-black mx-auto">
       
@@ -84,7 +84,7 @@ export default function ContactForm({ onSubmit }) {
           <div className="flex flex-col bg-neutral-700 w-1/3">
             <div className="flex justify-center items-center gap-2 h-24 p-4 bg-gray-300">
               <input 
-                className="rounded-md w-36 h-7 p-2"
+                className="rounded-md w-36 min-w-28 h-7 p-2"
                 type="text"
                 name="name"
                 placeholder="Your Name"
@@ -92,7 +92,7 @@ export default function ContactForm({ onSubmit }) {
                 onChange={(e) => setName(e.target.value)}
               />
               <input
-                className="rounded-md h-7 p-2"
+                className="rounded-md h-7 p-2 min-w-28"
                 type="email"
                 name="email"
                 placeholder="Enter your email..."
