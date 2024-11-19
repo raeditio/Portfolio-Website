@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import { PortfolioAutoreply } from "../../components/Contact/Email/portfolio-autoreply";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const SENDER_NAME = process.env.SENDER_NAME;
 const SENDER_EMAIL = process.env.SENDER_EMAIL;
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
 
@@ -17,7 +18,7 @@ export async function POST(req) {
   try {
     const { data, error } = await resend.batch.send([
       {
-        from: `Ryan Jung <${SENDER_EMAIL}>`,
+        from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
         to: [email],
         subject: "Your message through Ryan Jung's portfolio has been delivered!",
         react: <PortfolioAutoreply name={name} />,
@@ -40,6 +41,7 @@ export async function POST(req) {
     return Response.json({ data });
   } catch (error) {
     console.error("Unexpected error:", error);
-    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+    return Response.json({ error: "Unable to send email. Please try again later." }, { status: 500 });
+
   }
 };
