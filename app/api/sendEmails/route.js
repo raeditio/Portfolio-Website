@@ -5,6 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const SENDER_NAME = process.env.SENDER_NAME;
 const SENDER_EMAIL = process.env.SENDER_EMAIL;
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
+const MY_EMAIL = process.env.MY_EMAIL;
 
 
 export async function POST(req) {
