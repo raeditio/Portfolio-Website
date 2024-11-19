@@ -7,17 +7,15 @@ const SENDER_EMAIL = process.env.SENDER_EMAIL;
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
 const MY_EMAIL = process.env.MY_EMAIL;
 
-
 export async function POST(req) {
+  console.log("API Request Received:", req);
   const { name, email, message } = await req.json();
 
-  // Validate input
-  if (!name || !email || !message) {
-    return Response.json({ error: "Missing required fields" }, { status: 400 });
-  }
+  console.log("Parsed Data:", { name, email, message });
 
   try {
-    const { data, error } = await resend.batch.send([
+    console.log("Environment Variables:", { SENDER_NAME, SENDER_EMAIL, CONTACT_EMAIL, MY_EMAIL });
+    const {data, error} = await resend.batch.send([
       {
         from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
         to: [email],
@@ -25,8 +23,8 @@ export async function POST(req) {
         react: <PortfolioAutoreply name={name} />,
       },
       {
-        from: CONTACT_EMAIL,
-        to: [SENDER_EMAIL],
+        from: `Portfolio <${CONTACT_EMAIL}>`,
+        to: [MY_EMAIL],
         subject: "A new message from your portfolio!",
         html: `
           <p>from: ${name} (${email})</p>
@@ -35,14 +33,11 @@ export async function POST(req) {
     ]);
 
     if (error) {
-      console.error("Error sending email:", error);
       return Response.json({ error }, { status: 500 });
     }
 
-    return Response.json({ data });
+    return Response.json(data);
   } catch (error) {
-    console.error("Unexpected error:", error);
-    return Response.json({ error: "Unable to send email. Please try again later." }, { status: 500 });
-
+    return Response.json({ error }, { status: 500 });
   }
-};
+}

@@ -12,7 +12,8 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-export default function PortfolioAutoreply(name) {
+export function PortfolioAutoreply(props) {
+    const { name } = props;
     return (
         <Html>
         <Head />
@@ -22,7 +23,7 @@ export default function PortfolioAutoreply(name) {
                 <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
                     <Section className="my-4">
                         <Img
-                            src={`../public/Logo.svg`}
+                            src="https://ryankwjung.com/Logo.png"
                             width="60"
                             height="60"
                             alt="Portfolio Logo"

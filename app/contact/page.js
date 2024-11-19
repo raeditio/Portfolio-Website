@@ -10,7 +10,11 @@ async function SendEmails(data) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      name: String(data.name),
+      email: String(data.email),
+      message: String(data.message),
+    }),
   });
 
   return await response.json();
@@ -22,9 +26,9 @@ export default function Contact() {
   const handleSubmission = async (data) => {
     try {
       const response = await SendEmails(data);
-      // console.log(response.message); // "Emails sent successfully!"
+      console.log("API Response:", response);
     } catch (error) {
-      console.error("Error:", error.message);
+      console.error("Error:", error);
     }
   };
 

@@ -21,6 +21,22 @@ export default function ClassicContactForm({ onSubmit }) {
     { label: "Message", type: "textarea", name: "message" }
   ];
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Please fill in all fields.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      alert("Invalid email address.");
+      return;
+    }
+
+    onSubmit(formData);
+    // console.log("Form Data Submitted:", formData);
+  };
+  
+
   return (
     <div className="flex flex-col items-center w-full min-w-80 mt-24 text-center text-slate-200">
       <h1 className="text-4xl font-bold mb-4 font-mono">Contact Me</h1>
@@ -47,7 +63,7 @@ export default function ClassicContactForm({ onSubmit }) {
           </label>
         ))}
         <button
-          onClick={() => onSubmit(formData)}
+          onClick={handleSubmit}
           className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
           Submit
         </button>
