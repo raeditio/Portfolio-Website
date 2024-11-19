@@ -13,13 +13,15 @@ export async function POST(req) {
     return Response.json({ error: "Missing required fields" }, { status: 400 });
   }
 
+  console.log("Sending email:", { name, email, message });
+
   try {
     const { data, error } = await resend.batch.send([
       {
         from: `Ryan Jung <${SENDER_EMAIL}>`,
         to: [email],
         subject: "Your message through Ryan Jung's portfolio has been delivered!",
-        react: PortfolioAutoreply({ name }),
+        react: <PortfolioAutoreply name={name} />,
       },
       {
         from: email,
