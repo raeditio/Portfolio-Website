@@ -3,6 +3,7 @@ import { PortfolioAutoreply } from "../../components/Contact/Email/portfolio-aut
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const SENDER_EMAIL = process.env.SENDER_EMAIL;
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL;
 
 
 export async function POST(req) {
@@ -22,10 +23,12 @@ export async function POST(req) {
         react: <PortfolioAutoreply name={name} />,
       },
       {
-        from: email,
+        from: CONTACT_EMAIL,
         to: [SENDER_EMAIL],
         subject: "A new message from your portfolio!",
-        html: `<p>${message}</p>`,
+        html: `
+          <p>from: ${name} (${email})</p>
+          <p>${message}</p>`,
       },
     ]);
 
