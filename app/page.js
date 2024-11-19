@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-w-512">
+      <main className="min-w-512">
         <div className="flex justify-center gap-96 whitespace-nowrap">
           <div className="text-center mt-52 text-white">
             <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">Ryan Jung</h1>
@@ -282,7 +282,7 @@ export default function Home() {
             </ul>
           </section>
         </div>
-      </div>
+      </main>
   </>
   );
 }
