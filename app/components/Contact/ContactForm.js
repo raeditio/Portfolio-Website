@@ -143,7 +143,7 @@ export default function ContactForm({ onSubmit }) {
               <div className="flex flex-col space-y-3">
                 {/* Default instruction messages */}
                 <div className="self-start text-center bg-zinc-500 text-white p-2 rounded-3xl min-w-14 inline-block ml-14">
-                  Hey, it's Ryan!
+                  Hey, it&apos;s Ryan!
                 </div>
                 <div className="self-start text-center bg-zinc-500 text-white p-2 rounded-3xl min-w-14 inline-block ml-14">
                   Enter your name and email above...
