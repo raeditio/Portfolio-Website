@@ -10,9 +10,15 @@ export default function ContactForm({ onSubmit }) {
   const [message, setMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
+  const [isEmailValid, setIsEmailValid] = useState(true);
 
   // Ref for the chat container
   const chatContainerRef = useRef(null);
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsEmailValid(emailRegex.test(email));
+  };  
 
   // Load the user's chat history from localStorage
   useEffect(() => {
@@ -43,19 +49,64 @@ export default function ContactForm({ onSubmit }) {
     setShowEmojiPicker(false); // Close picker after selection
   };
 
-  const handleSendMessage = (e) => {
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    validateEmail(value);
+  };  
+
+  const handleSendMessage = async (e) => {
     if (e.key === "Enter" && message.trim()) {
       e.preventDefault();
-
+      
+      // Create the message object
       const newMessage = { name, email, content: message };
-      const updatedChatHistory = [...chatHistory, newMessage];
-      setChatHistory(updatedChatHistory);
-      localStorage.setItem("chatHistory", JSON.stringify(updatedChatHistory));
-      const data = { name, email, message };
-      onSubmit(data); // Call the centralized email-sending function
-      setMessage(""); // Clear the input field
+  
+      // Validate fields
+      if (!newMessage.name || !newMessage.email || !newMessage.content) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newMessage.email)) {
+        alert("Invalid email address.");
+        return;
+      }
+  
+      try {
+        // Call the rate-limiting API
+        const rateLimitResponse = await fetch(`/api/sendEmails/rateLimit`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: newMessage.email }),
+        });
+  
+        const rateLimitResult = await rateLimitResponse.json();
+  
+        // Exit early if rate limit is exceeded
+        if (!rateLimitResponse.ok || !rateLimitResult.allowed) {
+          alert(rateLimitResult.message || "You have exceeded the rate limit. Please try again later.");
+          return;
+        }
+  
+        // Add the message to chat history and local storage
+        const updatedChatHistory = [...chatHistory, newMessage];
+        setChatHistory(updatedChatHistory);
+        localStorage.setItem("chatHistory", JSON.stringify(updatedChatHistory));
+  
+        // Call the centralized email-sending function
+        const data = { name, email, message };
+        onSubmit(data); // Sends the message via email
+  
+        // Clear the input field
+        setMessage("");
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
-  };
+  };  
 
   // Clear chat history
   const handleDeleteChat = () => {
@@ -92,13 +143,16 @@ export default function ContactForm({ onSubmit }) {
                 onChange={(e) => setName(e.target.value)}
               />
               <input
-                className="rounded-md h-7 p-2 min-w-28"
+                className={`border rounded-md h-7 p-2 w-full ${
+                  isEmailValid ? "border-gray-300" : "border-red-500"
+                } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 type="email"
                 name="email"
                 placeholder="Enter your email..."
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                />
+                onChange={handleEmailChange}
+                required
+              />  
             </div>
             
             {/* Chat List */}

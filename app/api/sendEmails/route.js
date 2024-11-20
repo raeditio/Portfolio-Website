@@ -14,7 +14,6 @@ export async function POST(req) {
   console.log("Parsed Data:", { name, email, message });
 
   try {
-    console.log("Environment Variables:", { SENDER_NAME, SENDER_EMAIL, CONTACT_EMAIL, MY_EMAIL });
     const {data, error} = await resend.batch.send([
       {
         from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
@@ -33,11 +32,19 @@ export async function POST(req) {
     ]);
 
     if (error) {
-      return Response.json({ error }, { status: 500 });
-    }
+      console.error("Error sending email:", error);
+      return new Response(
+        JSON.stringify({ error: "Failed to send email. Please try again later." }),
+        { status: 500 }
+      );
+    }    
 
     return Response.json(data);
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
-  }
+    console.error("Error sending email:", error);
+    return new Response(
+      JSON.stringify({ error: "An unexpected error occurred. Please try again later." }),
+      { status: 500 }
+    );
+  }  
 }

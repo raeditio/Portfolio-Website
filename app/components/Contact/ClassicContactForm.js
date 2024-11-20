@@ -21,7 +21,7 @@ export default function ClassicContactForm({ onSubmit }) {
     { label: "Message", type: "textarea", name: "message" }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       alert("Please fill in all fields.");
@@ -32,8 +32,36 @@ export default function ClassicContactForm({ onSubmit }) {
       return;
     }
 
-    onSubmit(formData);
-    // console.log("Form Data Submitted:", formData);
+    try {
+      // Call the rate-limiting API
+      const rateLimitResponse = await fetch(`/api/sendEmails/rateLimit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: newMessage.email }),
+      });
+
+      const rateLimitResult = await rateLimitResponse.json();
+
+      // Exit early if rate limit is exceeded
+      if (!rateLimitResponse.ok || !rateLimitResult.allowed) {
+        alert(rateLimitResult.message || "You have exceeded the rate limit. Please try again later.");
+        return;
+      }
+      
+      // Reset the form
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+      
+      onSubmit(formData);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An unexpected error occurred. Please try again.");
+    }
   };
   
 
