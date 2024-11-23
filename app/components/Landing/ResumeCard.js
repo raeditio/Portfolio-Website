@@ -26,4 +26,7 @@ const ResumeCard = forwardRef(({ company, title, duration, responsibilities, isV
     );
 });
 
+// Assign a display name for debugging
+ResumeCard.displayName = 'ResumeCard';
+
 export default ResumeCard;
