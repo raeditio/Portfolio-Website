@@ -1,7 +1,7 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
-import { Orbitron, Manrope } from 'next/font/google';
+import { Orbitron } from 'next/font/google';
 import Navbar from "./components/Navbar/Navbar";
 
 const orbitron = Orbitron({ subsets: ['latin'] });
