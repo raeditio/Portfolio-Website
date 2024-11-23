@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Markazi+text&display=swap');
+
 .resume-download-button {
     display: flex;
     position: fixed;
@@ -76,6 +78,7 @@
     color: #719af1;
     border-bottom: 1px solid rgba(255, 255, 255, 0.85);
     padding-bottom: 5px;
+    font-weight: bold;
 }
 
 /* Experience and project styling */
@@ -122,7 +125,7 @@ ul li {
 
 @media print {
     :root {
-        --font-reduction: 4px; /* Set the reduction size here */
+        /* --font-reduction: 4px; Set the reduction size here */
     }
 
     .resume-download-button {
@@ -134,27 +137,29 @@ ul li {
     }
     
     .resume-container {
-        margin: 35px auto;
-        width: 90%;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: calc(12pt - var(--font-reduction));
+        margin: 25px;
+        font-family: 'Markazi-text', serif;
+        /* font-size: calc(12pt - var(--font-reduction)); */
     }
 
     .resume-header {
         margin-bottom: 0;
-        color: #333;
+        color: #04206d;
     }
 
     .resume-section {
         margin-bottom: 0;
     }
 
+    /* .resume-contact-container {
+        font-size: 14px;
+    } */
+
     .resume-linkedin-container {
         /* transform: scale(0.8); Scale down by 20% for print */
         display: inline-flex; /* Ensure it aligns with text */
         gap: 3px; /* Adjust spacing */
         vertical-align: middle; /* Align with surrounding text */
-        color: #555;
     }
     
     /* Optionally hide the image if it's too large in print */
@@ -168,41 +173,60 @@ ul li {
     }
 
     .resume-header h1 {
-        font-size: calc(28px - 1.6 * var(--font-reduction));
+        /* font-size: calc(28px - 1.6 * var(--font-reduction)); */
+        font-size: 36px;
     }
 
     .resume-header p,
     .resume-section p {
-        font-size: calc(16px - 1 * var(--font-reduction));
+        /* font-size: calc(16px - 1 * var(--font-reduction)); */
         margin: 0;
         color:#555;
+        font-size: 20px;
     }
 
     .resume-experience p,
     .resume-project p {
-        font-size: calc(16px - 1.2 * var(--font-reduction));
+        /* font-size: calc(16px - 1.2 * var(--font-reduction)); */
         color: #555;
+        margin-left: auto;
+        margin-right: 12px;
+        font-size: 18px;
+        font-style: italic;
+    }
+
+    .resume-project a {
+        font-style: normal;
     }
 
     .resume-section h2 {
-        font-size: calc(22px - 1.6 * var(--font-reduction));
+        /* font-size: calc(22px - 1.6 * var(--font-reduction)); */
         margin-bottom: 0;
+        border-bottom: 1px solid #333;
+        font-size: 26px;
     }
 
     .resume-experience h3, .resume-project h3 {
-        font-size: calc(18px - 1.4 * var(--font-reduction));
-        color: #333333c9;
+        /* font-size: calc(18px - 1.4 * var(--font-reduction)); */
+        color: black;
+        font-size: 22px;
+        font-family: 'Markazi-text', serif;
     }
 
     ul li {
-        font-size: calc(16px - var(--font-reduction));
+        /* font-size: calc(16px - var(--font-reduction)); */
         margin: 0;
         color: #555;
+        font-size: 20px;
     }
 
     .resume-bullets {
-        font-size: calc(16px - var(--font-reduction));
-        margin: 0;
+        /* font-size: calc(16px - var(--font-reduction)); */
         color: #333;
+        font-size: 20px;
+    }
+
+    .resume-bullets p {
+        font-style: italic;
     }
 }

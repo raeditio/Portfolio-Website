@@ -53,6 +53,7 @@ module.exports = {
         'times': ['"Times New Roman"', 'serif'],
         'orbitron': ['Orbitron', 'sans-serif'],
         'manrope': ['Manrope', 'sans-serif'],
+        'markazi': ['Markazi Text', 'serif'],
       },
     },
   },
