@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 
 import ResumeCard from './components/Landing/ResumeCard';
 import TimelineWrapper from './components/Landing/TimelineWrapper';
@@ -11,6 +11,8 @@ import LanguageBox from './components/Landing/LanguageBox';
 export default function Home() {
   const cardsRef = useRef([]);
   const [visibleCards, setVisibleCards] = useState([]);
+  const [projectsVisible, setProjectsVisible] = useState(false);
+  const centerProjectRef = useRef(null);
 
   useEffect(() => {
       const observer = new IntersectionObserver(
@@ -36,6 +38,41 @@ export default function Home() {
 
       return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (projectsVisible && centerProjectRef.current) {
+        centerProjectRef.current.style.transform = `translateX(-490px) skewY(-3deg)`;
+        centerProjectRef.current.style.transition = `transform 0.2s ease-out`;
+      } else if (centerProjectRef.current) {
+        centerProjectRef.current.style.transform = `translateX(0)`;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setProjectsVisible(true);
+          } else {
+            setProjectsVisible(false);
+          }
+        });
+      },
+      { threshold: 0.8 }
+    );
+
+    if (centerProjectRef.current) {
+      observer.observe(centerProjectRef.current);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [projectsVisible]);
 
   return (
     <>
@@ -71,33 +108,34 @@ export default function Home() {
         <div className="flex justify-center mt-52 text-zinc-300 my-48 whitespace-nowrap w-full">
           <section className="flex flex-col w-512 h-full">
             {/* Experience Section */}
-            <div className="flex flex-col items-center rounded-2xl" style={{ background: "linear-gradient(120deg, #232526, #414345)" }}>
+            {/* <div className="flex flex-col items-center rounded-2xl" style={{ background: "linear-gradient(120deg, #232526, #414345)" }}> */}
+            <div className="flex flex-col items-center rounded-2xl">
               <h1 className="underline text-3xl text-center mb-4">&nbsp;Experience&nbsp;</h1>
               <TimelineWrapper>
                 {[{
-                    company: "Pylon",
-                    title: "Software Engineer",
-                    duration: "October 2023 - September 2024",
+                    company: "SKKU",
+                    title: "Researcher",
+                    duration: "October 2018 - January 2019",
                     responsibilities: [
-                        "CNN CV Data Collection Algorithm",
-                        "Automation Algorithms",
-                        "Distribution and Management of Programs",
+                      "Microorganism Cultivation",
+                      "Data Analysis and Interpretation",
                     ]
                 }, {
                     company: "Labs Co.",
                     title: "Instructor",
                     duration: "June 2020 - September 2021",
                     responsibilities: [
-                        "IB, SAT, TOEFL, and Engineering courses",
-                        "95% student pass rate",
+                      "IB, SAT, TOEFL, and Engineering courses",
+                      "95% student pass rate",
                     ]
                 }, {
-                    company: "SKKU",
-                    title: "Researcher",
-                    duration: "October 2018 - January 2019",
+                    company: "Pylon",
+                    title: "Software Engineer",
+                    duration: "October 2023 - September 2024",
                     responsibilities: [
-                        "Microorganism Cultivation",
-                        "Data Analysis and Interpretation",
+                      "CNN CV Data Collection Algorithm",
+                      "Automation Algorithms",
+                      "Software Development and Maintenance",
                     ]
                 }].map((job, index) => (
                     <ResumeCard
@@ -109,45 +147,47 @@ export default function Home() {
                 ))}
             </TimelineWrapper>
             </div>
-
-            {/* Projects Section */}
-            <h1 className="border-b-2 text-3xl mt-2 text-center">Projects</h1>
-            <div className="flex items-center mt-2">
-              <span className="font-bold text-xl">Computer Vision Data Extractor</span>
-              <span className="flex ml-auto">Pylon Electronics | August 2024 - September 2024</span>
-            </div>
-            <ul className="list-disc ml-8">
-              <li>Achieved 40% reduction in manual data entry by designing a computer vision data extractor over OpenCV</li>
-              <li>Improved data extraction precision by 25 % using machine learning algorithms with Tensorflow</li>
-              <li>Enabled extensibility with LLM API for reliable data comprehension</li>
-            </ul>
-            
-            <div className="flex items-center mt-2">
-              <span className="font-bold text-xl">Matter-Enabled Smart Desk</span>
-              <span className="flex ml-auto">April 2024 - August 2024</span>
-            </div>
-            <ul className="list-disc ml-8">
-              <li>Developed IoT control hardware on ESP32 for a motorized standing desk</li>
-              <li>Improved user accessibility by 40% by integrating Matter protocol for cross-platform interoperability</li>
-              <li>Integrated with Apple HomeKit for Siri control</li>
-            </ul>
-            
-            <div className="flex items-center mt-2">
-              <span className="font-bold text-xl">Unreal Engine 4 Steam Community Mods</span>
-              <span className="flex ml-auto">
-                <Link href="https://steamcommunity.com/workshop/filedetails/?id=3036797917" target="_blank" rel="noopener noreferrer" className="text-sky-300 underline">
-                  Mod Link
-                </Link>
-                  &nbsp;| August 2023 - Present
-              </span>            
-            </div>
-            <ul className="list-disc ml-8">
-              <li>Generated over 25,000 downloads with positive user ratings for a suite of Unreal Engine 4 mods published Steam</li>
-              <li>Regularly published improvements and feature updates based on user feedback</li>
-              <li>Enhanced compatibility for broader environments and integration with other mods</li>
-            </ul>
           </section>
         </div>
+
+        {/* Projects Section */}
+        <h1 className="underline text-3xl mt-24 text-center">&nbsp;Projects&nbsp;</h1>
+        <div
+          className={`flex justify-center relative mt-10 mb-96 transition-transform duration-700 ease-in-out ${
+            projectsVisible ? '-translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+          }`}
+        >
+          {/* Left project */}
+          <div
+            className="flex justify-start backdrop-blur-lg rounded-xl shadow-md shadow-zinc-700 border border-white/20 w-128 h-128 my-8 transform translate-x-6 -skew-y-3"
+            style={{ background: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1.0), rgba(0, 0, 0, 0.1))" }}
+          >
+            <div className="w-9/10 h-auto blur-sm">
+              <h1 className="text-zinc-100 text-2xl border-b-2 w-full h-10 m-4">Project 1</h1>
+            </div>
+          </div>
+          {/* Center project */}
+          <div
+            ref={centerProjectRef}
+            className="flex justify-start backdrop-blur-lg rounded-xl shadow-2xl shadow-zinc-700 border border-white/20 w-128 h-128 my-8 transform -translate-y-12 z-10"
+            style={{
+              background: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1.0), rgba(0, 0, 0, 0.1))",
+              perspective: "800px",
+            }}
+          >
+            <h1 className="text-zinc-100 text-2xl border-b-2 w-full h-10 m-4">TorchVision</h1>
+          </div>
+          {/* Right project */}
+          <div
+            className="flex justify-start backdrop-blur-lg rounded-xl shadow-md shadow-zinc-700 border border-white/20 w-128 h-128 my-8 transform -translate-x-6 skew-y-3"
+            style={{ background: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1.0), rgba(0, 0, 0, 0.1))" }}
+          >
+            <div className="w-9/10 h-auto blur-sm">
+              <h1 className="text-zinc-100 text-2xl border-b-2 w-full h-10 m-4">Project 3</h1>
+            </div>
+          </div>
+        </div>
+
       </main>
   </>
   );

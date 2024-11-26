@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwind-scrollbar');
 
 module.exports = {
   content: [
@@ -57,7 +56,9 @@ module.exports = {
       },
     },
   },
-  plugins: [plugin],
+  plugins: [require('tailwind-scrollbar'),
+            require('@tailwindcss/typography')
+  ],
   variants: {
     scrollbar: ['rounded'],
   },
