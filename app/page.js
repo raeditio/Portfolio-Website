@@ -2,17 +2,19 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import ResumeCard from './components/Landing/ResumeCard';
 import TimelineWrapper from './components/Landing/TimelineWrapper';
 import LanguageBox from './components/Landing/LanguageBox';
+import ProjectCards from './components/Landing/ProjectCards1';
+import ProjectCard from './components/Landing/ProjectCard';
 
 export default function Home() {
   const cardsRef = useRef([]);
   const [visibleCards, setVisibleCards] = useState([]);
+  const projectsRef = useRef(null);
   const [projectsVisible, setProjectsVisible] = useState(false);
-  const centerProjectRef = useRef(null);
 
   useEffect(() => {
       const observer = new IntersectionObserver(
@@ -40,44 +42,32 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (projectsVisible && centerProjectRef.current) {
-        centerProjectRef.current.style.transform = `translateX(-490px) skewY(-3deg)`;
-        centerProjectRef.current.style.transition = `transform 0.2s ease-out`;
-      } else if (centerProjectRef.current) {
-        centerProjectRef.current.style.transform = `translateX(0)`;
-      }
-    };
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setProjectsVisible(true);
-          } else {
+          }
+          else {
             setProjectsVisible(false);
           }
         });
       },
-      { threshold: 0.8 }
+      { threshold: 0.1 }
     );
 
-    if (centerProjectRef.current) {
-      observer.observe(centerProjectRef.current);
+    if (projectsRef.current) {
+      observer.observe(projectsRef.current);
     }
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [projectsVisible]);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      <main className="min-w-512">
-        <div className="flex justify-center gap-96 whitespace-nowrap">
+      <main className="min-w-512 max-h-screen scroll-smooth snap-y snap-mandatory overflow-y-scroll">
+        {/* Intro Section */}
+        <section className="snap-center flex flex-col justify-center whitespace-nowrap">
           <div className="text-center mt-72 text-white">
             <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">Ryan Jung</h1>
             <div className="text-lg text-zinc-400">
@@ -99,19 +89,18 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
 
         {/* Computer Language Box */}
         <LanguageBox />
+        </section>
         
-        {/* Resume Box */}
-        <div className="flex justify-center mt-52 text-zinc-300 my-48 whitespace-nowrap w-full">
-          <section className="flex flex-col w-512 h-full">
-            {/* Experience Section */}
+        {/* Experience Section */}
+        <section className="snap-center flex justify-center mt-52 text-zinc-300 my-48 whitespace-nowrap w-full">
+          <div className="flex flex-col w-512 h-full">
             {/* <div className="flex flex-col items-center rounded-2xl" style={{ background: "linear-gradient(120deg, #232526, #414345)" }}> */}
             <div className="flex flex-col items-center rounded-2xl">
               <h1 className="underline text-3xl text-center mb-4">&nbsp;Experience&nbsp;</h1>
-              <TimelineWrapper>
+              <TimelineWrapper className="snap-center">
                 {[{
                     company: "SKKU",
                     title: "Researcher",
@@ -147,47 +136,14 @@ export default function Home() {
                 ))}
             </TimelineWrapper>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
 
         {/* Projects Section */}
-        <h1 className="underline text-3xl mt-24 text-center">&nbsp;Projects&nbsp;</h1>
-        <div
-          className={`flex justify-center relative mt-10 mb-96 transition-transform duration-700 ease-in-out ${
-            projectsVisible ? '-translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-          }`}
-        >
-          {/* Left project */}
-          <div
-            className="flex justify-start backdrop-blur-lg rounded-xl shadow-md shadow-zinc-700 border border-white/20 w-128 h-128 my-8 transform translate-x-6 -skew-y-3"
-            style={{ background: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1.0), rgba(0, 0, 0, 0.1))" }}
-          >
-            <div className="w-9/10 h-auto blur-sm">
-              <h1 className="text-zinc-100 text-2xl border-b-2 w-full h-10 m-4">Project 1</h1>
-            </div>
-          </div>
-          {/* Center project */}
-          <div
-            ref={centerProjectRef}
-            className="flex justify-start backdrop-blur-lg rounded-xl shadow-2xl shadow-zinc-700 border border-white/20 w-128 h-128 my-8 transform -translate-y-12 z-10"
-            style={{
-              background: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1.0), rgba(0, 0, 0, 0.1))",
-              perspective: "800px",
-            }}
-          >
-            <h1 className="text-zinc-100 text-2xl border-b-2 w-full h-10 m-4">TorchVision</h1>
-          </div>
-          {/* Right project */}
-          <div
-            className="flex justify-start backdrop-blur-lg rounded-xl shadow-md shadow-zinc-700 border border-white/20 w-128 h-128 my-8 transform -translate-x-6 skew-y-3"
-            style={{ background: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1.0), rgba(0, 0, 0, 0.1))" }}
-          >
-            <div className="w-9/10 h-auto blur-sm">
-              <h1 className="text-zinc-100 text-2xl border-b-2 w-full h-10 m-4">Project 3</h1>
-            </div>
-          </div>
-        </div>
-
+        <section className="snap-center flex flex-col justify-center">
+          <h1 className="flex justify-center text-3xl text-zinc-100">Projects</h1>
+          
+        </section>
       </main>
   </>
   );
