@@ -84,8 +84,8 @@ export default function Resume() {
                             <p>Sungkyunkwan University | October 2018 - January 2019</p>
                         </div>
                         <ul>
-                            <li>Cultivated microorganism within microbiology lab</li>
-                            <li>Discusssed project progress and shared insights with research team by participating in weekly meetings</li>
+                            <li>Cultivated microorganisms within the microbiology lab</li>
+                            <li>Discussed project progress and shared insights with the research team by participating in weekly meetings</li>
                             <li>Collaborated with senior researchers for data analysis and result interpretation</li>
                         </ul>
                     </div>
