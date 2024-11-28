@@ -75,7 +75,7 @@ export default function Home() {
             {/* <div className="flex flex-col items-center rounded-2xl" style={{ background: "linear-gradient(120deg, #232526, #414345)" }}> */}
             <div className="flex flex-col items-center rounded-2xl">
               <h1 className="underline text-3xl text-center mb-4">&nbsp;Experience&nbsp;</h1>
-              <TimelineWrapper className="snap-center">
+              <TimelineWrapper className="sm:snap-center">
                 {[{
                     company: "Pylon",
                     title: "Software Engineer",
