@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 
 export default function ProjectCardContainer() {
@@ -43,8 +43,29 @@ export default function ProjectCardContainer() {
         );
     };
 
+    const projectsRef = useRef(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove("translate-y-44", "opacity-0");
+                } else {
+                    entry.target.classList.add("translate-y-44", "opacity-0");
+                }
+            },
+            { threshold: 0.1 }
+        );
+    
+        // Observe the container
+        const container = projectsRef.current;
+        if (container) observer.observe(container);
+    
+        return () => observer.disconnect();
+    }, []);
+    
+
     return (
-        <div className="relative flex flex-col items-center">
+        <div ref={projectsRef} className="relative flex flex-col items-center transition-all duration-700 ease-out">
             <div className="relative flex justify-center w-full h-512">
                 {projects.map((project, index) => {
                     // Calculate position classes based on the current index
