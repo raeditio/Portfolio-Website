@@ -8,19 +8,17 @@ const brand = "Ryan Jung";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProjectHovered, setIsProjectHovered] = useState(false);
   const [isContactHovered, setIsContactHovered] = useState(false);
+  const [isResumeHovered, setIsResumeHovered] = useState(false);
 
   function setHoverOff() {
-    setIsProjectHovered(false);
     setIsContactHovered(false);
+    setIsResumeHovered(false);
   }
-
-  const isHovered = isProjectHovered || isContactHovered;
 
   return (
     <nav
-      className={isHovered ? 
+      className={isContactHovered || isResumeHovered ? 
         "flex bg-neutral-800 justify-center align-center p-5 fixed top-0 w-full w-min-512 z-10 pb-12 transition-all duration-300" : 
         "flex bg-neutral-900 justify-center align-center p-5 fixed top-0 w-full w-min-512 z-10"}
       onMouseLeave={setHoverOff}
@@ -51,35 +49,78 @@ export default function Navbar() {
         </svg>
       </button>
 
-      {/* Links for Desktop */}
+      {/* Links for Desktop and Mobile */}
       <div className={`nav-links flex items-center gap-5 text-sm text-neutral-300 translate-x-96 md:flex ${isMenuOpen ? 'flex flex-col items-start mt-12 md:mt-0' : 'hidden md:flex'}`}>
-        {/* Contact Link */}
-        <Link
-          href="/contact"
-          className="contact p-1 rounded hover:bg-gray-800"
-          style={{ cursor: "pointer" }}
-          onMouseEnter={() => { setIsContactHovered(true); setIsProjectHovered(false); }}
+        
+        {/* Contact Menu */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsContactHovered(true)}
+          onMouseLeave={() => setIsContactHovered(false)}
         >
-          Contact
-        </Link>
-        <div className={isContactHovered ? "flex absolute gap-24 justify-center top-1/2 mt-2 -left-full -translate-x-1/4 whitespace-nowrap p-2" : "hidden opacity-0"}>
-          <Link href="mailto:ryankwjung@gmail.com"
-            className="hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300">ryankwjung@gmail.com</Link>
-          <Link href="/contact"
-            className="hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300">Contact Form</Link>
+          <Link
+            href="/contact"
+            className="p-1 rounded hover:bg-gray-800"
+            style={{ cursor: "pointer" }}
+          >
+            Contact
+          </Link>
+          {isContactHovered && (
+            <div className="absolute bg-neutral-800 p-3 rounded shadow-lg top-10 left-0">
+              <Link
+                href="mailto:ryankwjung@gmail.com"
+                className="block hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300"
+              >
+                Email Me
+              </Link>
+              <Link
+                href="/contact"
+                className="block hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300 mt-2"
+              >
+                Contact Form
+              </Link>
+            </div>
+          )}
         </div>
 
-        {/* Resume Link */}
-        <Link href="/resume" onMouseEnter={setHoverOff} className="p-1 rounded hover:text-indigo-400 transition-all duration-200">Resume</Link>
-        
+        {/* Resume Menu */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsResumeHovered(true)}
+          onMouseLeave={() => setIsResumeHovered(false)}
+        >
+          <Link
+            href="/resume"
+            className="p-1 rounded hover:bg-gray-800"
+            style={{ cursor: "pointer" }}
+          >
+            Resume
+          </Link>
+          {isResumeHovered && (
+            <div className="absolute bg-neutral-800 p-3 rounded shadow-lg top-10 left-0">
+              <Link
+                href="/resume"
+                className="block hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300"
+              >
+                View Resume
+              </Link>
+              <Link
+                href="/resume.pdf"
+                target="_blank"
+                className="block hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300 mt-2"
+              >
+                Download PDF
+              </Link>
+            </div>
+          )}
+        </div>
+
         {/* Social Media Links */}
         <Link href="https://github.com/raeditio" target="_blank" rel="noopener noreferrer">
-          <Image src="/github.svg" alt="GitHub" width="20" height="20"
-            className="grayscale brightness-80 self-center hover:brightness-100" />
+          <Image src="/github.svg" alt="GitHub" width="20" height="20" className="grayscale brightness-80 self-center hover:brightness-100" />
         </Link>
         <Link href="https://www.linkedin.com/in/ryanjung0/" target="_blank" rel="noopener noreferrer">
-          <Image src="/linkedin.png" alt="LinkedIn" width="20" height="20"
-            className="grayscale brightness-150 align-middle hover:brightness-200" />
+          <Image src="/linkedin.png" alt="LinkedIn" width="20" height="20" className="grayscale brightness-150 align-middle hover:brightness-200" />
         </Link>
       </div>
     </nav>

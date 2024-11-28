@@ -34,7 +34,7 @@ export default function LanguageBox() {
             {/* Computer Languages Section */}
             <div className='flex justify-center mt-32'>
                 {/* Encasing */}
-                <div className="flex flex-col items-center justify-center w-384 h-96 p-2 rounded-2xl bg-gradient-to-b from-gray-900 to-black overflow-hidden">
+                <div className="flex flex-col items-center justify-center w-full sm:w-384 h-96 p-2 rounded-2xl bg-gradient-to-b from-gray-900 to-black overflow-hidden">
                     <div className="flex flex-row items-center justify-center border-b-2 border-neutral-800 -translate-x-5">
                         {/* HTML Icon */}
                         <div ref={(el) => (languageRefs.current[0] = el)}

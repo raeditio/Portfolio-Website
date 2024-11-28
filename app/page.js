@@ -72,7 +72,7 @@ export default function Home() {
         </section>
         
         {/* Experience Section */}
-        <section className="snap-center flex justify-center mt-20 sm:mt-52 text-zinc-300 my-24 sm:my-48 whitespace-nowrap w-full px-4">
+        <section className="snap-center flex justify-center mt-20 sm:mt-72 text-zinc-300 my-24 sm:my-48 whitespace-nowrap w-full px-4">
           <div className="flex flex-col w-full sm:w-512 h-full">
             <div className="flex flex-col items-center rounded-2xl">
               <h1 className="underline text-xl sm:text-3xl text-center mb-4">&nbsp;Experience&nbsp;</h1>
