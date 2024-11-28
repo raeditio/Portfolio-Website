@@ -10,13 +10,13 @@ export default function LanguageBox() {
         (entries) => {
             entries.forEach((entry) => {
             const index = languageRefs.current.indexOf(entry.target);
-            if (entry.isIntersecting) {
-                setIsVisible((prev) => {
-                const newVisibility = [...prev];
-                newVisibility[index] = true;
-                return newVisibility;
-                });
-            }
+                if (entry.isIntersecting) {
+                    setIsVisible((prev) => {
+                    const newVisibility = [...prev];
+                    newVisibility[index] = true;
+                    return newVisibility;
+                    });
+                }
             });
         },
         { threshold: 0.1 } // Adjust the threshold as needed

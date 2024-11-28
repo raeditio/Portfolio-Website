@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import ResumeCard from './components/Landing/ResumeCard';
 import TimelineWrapper from './components/Landing/TimelineWrapper';
 import LanguageBox from './components/Landing/LanguageBox';
+import ProjectCardContainer from './components/Landing/ProjectCardContainer';
 
 export default function Home() {
   const cardsRef = useRef([]);
@@ -39,8 +40,9 @@ export default function Home() {
 
   return (
     <>
-      <main className="min-w-512">
-        <div className="flex justify-center gap-96 whitespace-nowrap">
+      <main className="min-w-512 max-h-screen scroll-smooth snap-y snap-mandatory overflow-y-scroll">
+        {/* Intro Section */}
+        <section className="snap-center flex flex-col justify-center whitespace-nowrap">
           <div className="text-center mt-72 text-white">
             <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">Ryan Jung</h1>
             <div className="text-lg text-zinc-400">
@@ -62,42 +64,42 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
 
         {/* Computer Language Box */}
         <LanguageBox />
+        </section>
         
-        {/* Resume Box */}
-        <div className="flex justify-center mt-52 text-zinc-300 my-48 whitespace-nowrap w-full">
-          <section className="flex flex-col w-512 h-full">
-            {/* Experience Section */}
-            <div className="flex flex-col items-center rounded-2xl" style={{ background: "linear-gradient(120deg, #232526, #414345)" }}>
+        {/* Experience Section */}
+        <section className="snap-center flex justify-center mt-52 text-zinc-300 my-48 whitespace-nowrap w-full">
+          <div className="flex flex-col w-512 h-full">
+            {/* <div className="flex flex-col items-center rounded-2xl" style={{ background: "linear-gradient(120deg, #232526, #414345)" }}> */}
+            <div className="flex flex-col items-center rounded-2xl">
               <h1 className="underline text-3xl text-center mb-4">&nbsp;Experience&nbsp;</h1>
-              <TimelineWrapper>
+              <TimelineWrapper className="snap-center">
                 {[{
-                    company: "Pylon",
-                    title: "Software Engineer",
-                    duration: "October 2023 - September 2024",
+                    company: "SKKU",
+                    title: "Researcher",
+                    duration: "October 2018 - January 2019",
                     responsibilities: [
-                        "CNN CV Data Collection Algorithm",
-                        "Automation Algorithms",
-                        "Distribution and Management of Programs",
+                      "Microorganism Cultivation",
+                      "Data Analysis and Interpretation",
                     ]
                 }, {
                     company: "Labs Co.",
                     title: "Instructor",
                     duration: "June 2020 - September 2021",
                     responsibilities: [
-                        "IB, SAT, TOEFL, and Engineering courses",
-                        "95% student pass rate",
+                      "IB, SAT, TOEFL, and Engineering courses",
+                      "95% student pass rate",
                     ]
                 }, {
-                    company: "SKKU",
-                    title: "Researcher",
-                    duration: "October 2018 - January 2019",
+                    company: "Pylon",
+                    title: "Software Engineer",
+                    duration: "October 2023 - September 2024",
                     responsibilities: [
-                        "Microorganism Cultivation",
-                        "Data Analysis and Interpretation",
+                      "CNN CV Data Collection Algorithm",
+                      "Automation Algorithms",
+                      "Software Development and Maintenance",
                     ]
                 }].map((job, index) => (
                     <ResumeCard
@@ -109,45 +111,20 @@ export default function Home() {
                 ))}
             </TimelineWrapper>
             </div>
+            <div className="flex justify-center mt-4">
+              <Link href="/resume" className="flex justify-center p-3 w-48 rounded bg-neutral-400 text-black text-2xl">Go to Resume</Link>
+            </div>
+          </div>
+        </section>
 
-            {/* Projects Section */}
-            <h1 className="border-b-2 text-3xl mt-2 text-center">Projects</h1>
-            <div className="flex items-center mt-2">
-              <span className="font-bold text-xl">Computer Vision Data Extractor</span>
-              <span className="flex ml-auto">Pylon Electronics | August 2024 - September 2024</span>
-            </div>
-            <ul className="list-disc ml-8">
-              <li>Achieved 40% reduction in manual data entry by designing a computer vision data extractor over OpenCV</li>
-              <li>Improved data extraction precision by 25 % using machine learning algorithms with Tensorflow</li>
-              <li>Enabled extensibility with LLM API for reliable data comprehension</li>
-            </ul>
-            
-            <div className="flex items-center mt-2">
-              <span className="font-bold text-xl">Matter-Enabled Smart Desk</span>
-              <span className="flex ml-auto">April 2024 - August 2024</span>
-            </div>
-            <ul className="list-disc ml-8">
-              <li>Developed IoT control hardware on ESP32 for a motorized standing desk</li>
-              <li>Improved user accessibility by 40% by integrating Matter protocol for cross-platform interoperability</li>
-              <li>Integrated with Apple HomeKit for Siri control</li>
-            </ul>
-            
-            <div className="flex items-center mt-2">
-              <span className="font-bold text-xl">Unreal Engine 4 Steam Community Mods</span>
-              <span className="flex ml-auto">
-                <Link href="https://steamcommunity.com/workshop/filedetails/?id=3036797917" target="_blank" rel="noopener noreferrer" className="text-sky-300 underline">
-                  Mod Link
-                </Link>
-                  &nbsp;| August 2023 - Present
-              </span>            
-            </div>
-            <ul className="list-disc ml-8">
-              <li>Generated over 25,000 downloads with positive user ratings for a suite of Unreal Engine 4 mods published Steam</li>
-              <li>Regularly published improvements and feature updates based on user feedback</li>
-              <li>Enhanced compatibility for broader environments and integration with other mods</li>
-            </ul>
-          </section>
-        </div>
+        {/* Projects Section */}
+        <section className="snap-center flex flex-col justify-center">
+          <h1 className="flex justify-center underline text-3xl text-zinc-100 mt-44">&nbsp;Projects&nbsp;</h1>
+          <div className="flex flex-col">
+            <h1 className="flex justify-center text-zinc-100 mt-4">Click on Project Name to Navigate to Project Link.</h1>
+          </div>
+          <ProjectCardContainer />
+        </section>
       </main>
   </>
   );

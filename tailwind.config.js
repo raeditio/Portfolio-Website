@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwind-scrollbar');
 
 module.exports = {
   content: [
@@ -9,9 +8,30 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gap: {
+        '128': '32rem',
+        '192': '34rem',
+        '256': '48rem',
+        '384': '52rem',
+        '512': '64rem',
+        '640': '80rem',
+        '1024': '96rem',
+        '2048': '128rem',
+        '2300': '140rem',
+        '2560': '160rem',
+      },
+      inset: {
+        '90': '22rem',
+        '100': '28rem',
+      },
       height: {
         '128': '32rem',
+        '192': '34rem',
         '256': '48rem',
+        '384': '52rem',
+        '512': '64rem',
+        '640': '80rem',
+        '1024': '96rem',
       },
       width: {
         '128': '32rem',
@@ -57,7 +77,9 @@ module.exports = {
       },
     },
   },
-  plugins: [plugin],
+  plugins: [require('tailwind-scrollbar'),
+            require('@tailwindcss/typography')
+  ],
   variants: {
     scrollbar: ['rounded'],
   },

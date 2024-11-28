@@ -55,8 +55,8 @@ export default function Navbar() {
           <div className={isContactHovered ? "flex absolute gap-24 justify-center top-1/2 mt-2 -left-full -translate-x-1/4 whitespace-nowrap p-2" : "hidden opacity-0"}>
             <Link href="mailto:ryankwjung@gmail.com"
               className="hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300">ryankwjung@gmail.com</Link>
-            <Link href="tel:604-726-1758"
-              className="hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300">(604) 726-1758</Link>
+            {/* <Link href="tel:604-726-1758"
+              className="hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300">(604) 726-1758</Link> */}
             <Link href="/contact"
               className="hover:underline hover:decoration-neutral-400 hover:transition-all hover:duration-300">Contact Form</Link>
           </div>
