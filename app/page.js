@@ -43,7 +43,7 @@ export default function Home() {
       <main className="min-w-512 max-h-screen scroll-smooth snap-y snap-mandatory overflow-y-scroll">
         {/* Intro Section */}
         <section className="snap-center flex flex-col justify-center whitespace-nowrap">
-          <div className="text-center mt-72 text-white">
+          <div className="text-center mt-36  text-white">
             <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">Ryan Jung</h1>
             <div className="text-lg text-zinc-400">
               <p className="text-zinc-300 mb-2">📍Vancouver, BC | Software Engineer</p>
@@ -70,7 +70,7 @@ export default function Home() {
         </section>
         
         {/* Experience Section */}
-        <section className="snap-center flex justify-center mt-52 text-zinc-300 my-48 whitespace-nowrap w-full">
+        <section className="snap-center flex justify-center mt-96 text-zinc-300 my-48 whitespace-nowrap w-full">
           <div className="flex flex-col w-512 h-full">
             {/* <div className="flex flex-col items-center rounded-2xl" style={{ background: "linear-gradient(120deg, #232526, #414345)" }}> */}
             <div className="flex flex-col items-center rounded-2xl">
@@ -118,8 +118,8 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section className="snap-center flex flex-col justify-center">
-          <h1 className="flex justify-center underline text-3xl text-zinc-100 mt-44">&nbsp;Projects&nbsp;</h1>
+        <section className="snap-start flex flex-col justify-center h-full">
+          <h1 className="flex justify-center underline text-3xl text-zinc-100 mt-36">&nbsp;Projects&nbsp;</h1>
           <div className="flex flex-col">
             <h1 className="flex justify-center text-zinc-100 mt-4">Click on Project Name to Navigate to Project Link.</h1>
           </div>

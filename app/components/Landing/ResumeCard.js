@@ -33,7 +33,7 @@ const ResumeCard = forwardRef(({ company, title, duration, responsibilities, isV
     return (
         <div
             ref={ref}
-            className={`flex w-96 h-56 justify-center items-center backdrop-blur-lg rounded-xl shadow-lg border border-white/20 p-6 my-2 transition-transform duration-300 ease-out ${
+            className={`flex w-96 h-52 justify-center items-center backdrop-blur-lg rounded-xl shadow-lg border border-white/20 p-6 my-2 transition-transform duration-300 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
             }`}
             style={{ background: 'radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1))' }}

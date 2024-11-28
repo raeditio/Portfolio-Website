@@ -6,7 +6,7 @@ export default function ProjectCard({ title, description, images = [], link }) {
         <div className="flex justify-center relative mt-28 mb-96 gap-8">
             <div
                 className="flex flex-col justify-start backdrop-blur-lg rounded-xl shadow-lg shadow-gray-800 border
-                    border-gray-700 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 w-128 h-192 p-6 transition-transform duration-700 ease-out"
+                    border-gray-700 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 w-128 h-112 p-6 transition-transform duration-700 ease-out"
             >
                 <div className="text-white">
                     {/* Title */}
@@ -25,7 +25,7 @@ export default function ProjectCard({ title, description, images = [], link }) {
                         )}
                     </div>
                     {/* Description */}
-                    <div className="text-md text-gray-300 leading-relaxed mb-6">
+                    <div className="text-md text-gray-300 leading-relaxed">
                         <span
                             dangerouslySetInnerHTML={{ __html: description }}
                         ></span>
@@ -38,8 +38,8 @@ export default function ProjectCard({ title, description, images = [], link }) {
                                     key={index}
                                     src={imgSrc}
                                     alt={`${title} - image ${index + 1}`}
-                                    width={300}
-                                    height={300}
+                                    width={230}
+                                    height={230}
                                     className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                                 />
                             ))}
