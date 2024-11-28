@@ -7,14 +7,11 @@ import { useEffect, useRef, useState } from 'react';
 import ResumeCard from './components/Landing/ResumeCard';
 import TimelineWrapper from './components/Landing/TimelineWrapper';
 import LanguageBox from './components/Landing/LanguageBox';
-import ProjectCards from './components/Landing/ProjectCards1';
-import ProjectCard from './components/Landing/ProjectCard';
+import ProjectCardContainer from './components/Landing/ProjectCardContainer';
 
 export default function Home() {
   const cardsRef = useRef([]);
   const [visibleCards, setVisibleCards] = useState([]);
-  const projectsRef = useRef(null);
-  const [projectsVisible, setProjectsVisible] = useState(false);
 
   useEffect(() => {
       const observer = new IntersectionObserver(
@@ -39,28 +36,6 @@ export default function Home() {
       });
 
       return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setProjectsVisible(true);
-          }
-          else {
-            setProjectsVisible(false);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (projectsRef.current) {
-      observer.observe(projectsRef.current);
-    }
-
-    return () => observer.disconnect();
   }, []);
 
   return (
@@ -136,13 +111,19 @@ export default function Home() {
                 ))}
             </TimelineWrapper>
             </div>
+            <div className="flex justify-center mt-4">
+              <Link href="/resume" className="flex justify-center p-3 w-48 rounded bg-neutral-400 text-black text-2xl">Go to Resume</Link>
+            </div>
           </div>
         </section>
 
         {/* Projects Section */}
         <section className="snap-center flex flex-col justify-center">
-          <h1 className="flex justify-center text-3xl text-zinc-100">Projects</h1>
-          
+          <h1 className="flex justify-center underline text-3xl text-zinc-100 mt-44">&nbsp;Projects&nbsp;</h1>
+          <div className="flex flex-col">
+            <h1 className="flex justify-center text-zinc-100 mt-4">Click on Project Name to Navigate to Project Link.</h1>
+          </div>
+          <ProjectCardContainer />
         </section>
       </main>
   </>

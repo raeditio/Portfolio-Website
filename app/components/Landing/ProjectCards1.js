@@ -1,28 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function ProjectCards(projectsVisible) {
-    const lastScrollY = useRef(0);
     const [positions, setPositions] = useState(['left', 'center', 'right']);
     
       const projectStyles = {
         left: {
-            position: 'fixed',
-            top: '20%',
-            left: '23%',
-            transform: 'skewY(-3deg)',
+            transform: 'translateX(90px) skewY(-3deg)',
             zIndex: 1,
         },
         center: {
-            position: 'fixed',
-            top: '17%',
-            left: '40%',
+            transform: 'translateY(-30px)',
             zIndex: 10,
+            perspective: '1000px',
         },
         right: {
-            position: 'fixed',
-            top: '20%',
-            left: '57%',
-            transform: 'skewY(3deg)',
+            transform: 'translateX(-90px) skewY(3deg)',
             zIndex: 1,
         },
       };
@@ -37,30 +29,7 @@ export default function ProjectCards(projectsVisible) {
         right: {
           filter: 'blur(3px)',
         },
-      };
-    
-      useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const scrollDifference = scrollY - lastScrollY.current;
-    
-            if (Math.abs(scrollDifference) > 0.1) { // Threshold of 10 pixels
-                setPositions((prevPositions) => {
-                    if (scrollDifference > 0) {
-                        return [...prevPositions.slice(1), prevPositions[0]]; // Rotate right
-                    } else {
-                        return [prevPositions[2], ...prevPositions.slice(0, 2)]; // Rotate left
-                    }
-                });
-                lastScrollY.current = scrollY;
-            }
-        };
-    
-        window.addEventListener('scroll', handleScroll);
-    
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-    
+      }; 
 
     return (
         <div
