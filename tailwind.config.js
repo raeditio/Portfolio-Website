@@ -10,7 +10,6 @@ module.exports = {
     extend: {
       gap: {
         '128': '32rem',
-        '192': '34rem',
         '256': '48rem',
         '384': '52rem',
         '512': '64rem',
@@ -25,6 +24,7 @@ module.exports = {
         '100': '28rem',
       },
       height: {
+        '112': '28rem',
         '128': '32rem',
         '192': '34rem',
         '256': '48rem',
