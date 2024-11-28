@@ -28,7 +28,7 @@ export default function Resume() {
                 onClick={() => printWithFilename("Ryan Jung_Resume")}>
                 Download as PDF
             </button> */}
-            <a href="/Ryan Jung_Resume.pdf" download className="resume-download-button">Download Resume</a>
+            <a href="/Ryan Jung_Resume.pdf" download="Ryan Jung_Resume.pdf" className="resume-download-button">Download Resume</a>
 
             <div className="resume-container">
                 <header className="resume-header">

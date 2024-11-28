@@ -124,9 +124,9 @@ ul li {
 }
 
 @media print {
-    :root {
-        /* --font-reduction: 4px; Set the reduction size here */
-    }
+    /* :root {
+        --font-reduction: 4px; Set the reduction size here
+    } */
 
     .resume-download-button {
       display: none;
