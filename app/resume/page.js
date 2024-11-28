@@ -95,7 +95,7 @@ export default function Resume() {
                     <h2>Projects</h2>
                     <div className="resume-project">
                         <div className="resume-project-header">
-                            <h3>Computer Vision Data Extractor</h3>
+                            <h3>TensorOCR</h3>
                             <p>Pylon Electronics | August 2024 - September 2024</p>
                         </div>
                         <ul>
