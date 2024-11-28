@@ -152,7 +152,8 @@ export default function Resume() {
 
                 <section className="resume-section">
                     <h2>Skills & Interests</h2>
-                    <p><strong>Skills:</strong> C, C++, Python, TensorFlow, PyTorch, OpenCV, Next.js, React.js, Node.js, Redux, SQL, HTML/JS/CSS, TypeScript, UI/UX, English, Korean</p>
+                    <p><strong>Skills:</strong> C, C++, Python, TensorFlow, PyTorch, OpenCV, Next.js, React.js, Node.js, Redux, SQL, HTML/JS/CSS, TypeScript, UI/UX</p>
+                    <p><strong>Languages:</strong> English, Korean</p>
                     <p><strong>Interests:</strong> AI Development, Software Innovation, IoT Integration, Swimming, Debate</p>
                 </section>
             </div>
