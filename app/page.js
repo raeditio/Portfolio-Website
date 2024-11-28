@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="min-w-512 max-h-screen scroll-smooth snap-y snap-mandatory overflow-y-scroll">
+      <main className="sm:min-w-512 sm:max-h-screen sm:scroll-smooth sm:snap-y sm:snap-mandatory sm:overflow-y-scroll">
         {/* Intro Section */}
         <section className="sm:snap-center flex flex-col justify-center whitespace-nowrap">
           <div className="text-center mt-36  text-white">
