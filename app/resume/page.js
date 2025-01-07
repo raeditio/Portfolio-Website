@@ -123,7 +123,7 @@ export default function Resume() {
                             <p><Link href="https://steamcommunity.com/workshop/filedetails/?id=3036797917" target="_blank" rel="noopener noreferrer" className="text-sky-300 underline">Mod Link</Link> | August 2023 - Present</p>
                         </div>
                         <ul>
-                            <li>Generated over 25,000 downloads with positive user ratings for a suite of Unreal Engine 4 mods published Steam</li>
+                            <li>Generated over 30,000 downloads with multiple user endorsements for a suite of Unreal Engine 4 mods published Steam</li>
                             <li>Regularly published improvements and feature updates based on user feedback</li>
                             <li>Enhanced compatibility for broader environments and integration with other mods</li>
                         </ul>
