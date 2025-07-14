@@ -118,7 +118,7 @@ export default function Resume() {
                             <p><Link href="https://github.com/raeditio/ELEC491_TL101" target="_blank" rel="noopener noreferrer" className="text-sky-300 underline">Link</Link> | UBC & Icon Lab | January 2025 - Present</p>
                         </div>
                         <ul>
-                            <li>Led a team of 4 as project organizer to develop a 6" drone with SLAM-based navigation for HVAC inspection</li>
+                            <li>Led a team of 4 as project organizer to develop a 6&quot; drone with SLAM-based navigation for HVAC inspection</li>
                             <li>Designed a custom PCB for sensor fusion and control, improving flight stability by 30% and streamlining data acquisition</li>
                             <li>Streamlined real-time video and depth streaming over WiFi to ground station</li>
                             <li>Integrated ORB-SLAM3 with Depth Anything V2 to generate RGB-D data, improving power efficiency by 40%</li>
