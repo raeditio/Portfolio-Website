@@ -2,7 +2,7 @@
 
 Welcome to my portfolio website, showcasing my skills, projects, and experience in software development. This website is built using **Next.js**, leveraging its powerful features for server-side rendering, seamless routing, and optimized performance. The portfolio is designed to provide a clean and professional user experience, highlighting my expertise in technologies such as **React**, **JavaScript**, and **modern web development practices**.
 
-The website is deployed at **[ryankwjung.com](https://ryankwjung.com)** and is optimized for accessibility and responsiveness across devices. It includes an interactive navigation menu, a showcase of my featured projects, and an integrated contact form for easy communication.
+The website is deployed at **[ryankwjung.me](https://ryankwjung.me)** and is optimized for accessibility and responsiveness across devices. It includes an interactive navigation menu, a showcase of my featured projects, and an integrated contact form for easy communication.
 
 ### Features
 - **Modern Framework**: Built with **Next.js** for server-side rendering and static site generation.

@@ -34,8 +34,8 @@ export default function Resume() {
                     <h1 className="text-[28px] text-white/85 mb-1 print:text-[36px] print:text-[#04206d]">Ryan (Kyungwon) Jung</h1>
                     <div className="flex flex-row justify-center items-center text-lg gap-2 border-b-2 border-b-white print:border-b-gray-500 print:font-size-[20px] print:text-[#555] print:mr-[72px]">
                         {/* <p>경기도 고양시 덕양구 | {' '}</p> */}
-                        {/* <Link href="https://ryankwjung.com" target="_blank" rel="noopener noreferrer" className="text-[#719af1] hover:underline">ryankwjung.com</Link> | {' '} */}
-                        {/* <Link href="mailto:ryankwjung@gmail.com" className="text-[#719af1] hover:underline">ryankwjung@gmail.com</Link> | {' '} */}
+                        <Link href="https://ryankwjung.me" target="_blank" rel="noopener noreferrer" className="text-[#719af1] hover:underline">ryankwjung.me</Link> | {' '}
+                        <Link href="mailto:ryankwjung@gmail.com" className="text-[#719af1] hover:underline">ryankwjung@gmail.com</Link> | {' '}
                         {/* <Link href="tel:010-9082-1758" className="text-[#719af1] hover:underline">010.9082.1758</Link> | {' '} */}
                         <Link href="https://github.com/raeditio" className="flex flex-row gap-x-1 text-[#719af1] hover:underline">
                             <Image src="/github.svg" alt="GitHub" width="16" height="16" className="mb-1 print:invert" />

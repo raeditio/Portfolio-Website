@@ -23,7 +23,7 @@ export function PortfolioAutoreply(props) {
                 <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
                     <Section className="my-4">
                         <Img
-                            src="https://ryankwjung.com/Logo.png"
+                            src="https://ryankwjung.me/Logo.png"
                             width="60"
                             height="60"
                             alt="Portfolio Logo"
