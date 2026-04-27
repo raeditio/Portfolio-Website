@@ -40,6 +40,7 @@ module.exports = {
         'orbitron': ['Orbitron', 'sans-serif'],
         'manrope': ['Manrope', 'sans-serif'],
         'markazi': ['Markazi Text', 'serif'],
+        'pretendard': ['Pretendard', 'sans-serif'],
       },
     },
   },

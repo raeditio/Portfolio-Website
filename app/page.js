@@ -44,9 +44,9 @@ export default function Home() {
         {/* Intro Section */}
         <section className="sm:snap-center flex flex-col justify-center whitespace-nowrap">
           <div className="text-center mt-36  text-white">
-            <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">Ryan Jung</h1>
+            <h1 className="text-8xl inline-block text-transparent bg-clip-text bg-gradient-to-b from-60% from-gray-200">정경원</h1>
             <div className="text-lg text-zinc-400">
-              <p className="text-zinc-300 mb-2">📍Vancouver, BC | Software Engineer</p>
+              <p className="text-zinc-300 mb-2">📍경기도 고양시 | 소프트웨어 엔지니어</p>
               <p>AI, Embedded Systems, Web, IoT</p>
               <div className="flex justify-center gap-6 mt-12">
                 <Link href="https://github.com/raeditio" target="_blank" rel="noopener noreferrer"

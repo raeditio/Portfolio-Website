@@ -27,7 +27,7 @@ export default function Navbar() {
         <Link href="/" className="-translate-x-96 font-bold font-orbitron text-red-600 text-lg print:hidden">
             {brand}
         </Link>
-        <div className="nav-links flex items-center gap-5 text-sm text-neutral-300 translate-x-96">
+        <div className="nav-links flex items-center gap-5 text-sm text-neutral-300 translate-x-96 print:hidden">
           {/* project */}
           {/* <div className="flex flex-col">
             <Link
