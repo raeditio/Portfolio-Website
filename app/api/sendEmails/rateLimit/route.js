@@ -1,67 +1,71 @@
 import { createClient } from 'redis';
+import crypto from 'crypto';
 
+// 1. Initialize Redis Client
 const client = createClient({
   url: process.env.REDIS_URL,
 });
 
-// Global Redis error listener
 client.on('error', (err) => console.error('Redis Client Error:', err));
 
-// Ensure Redis is connected at startup
+// Immediate connection for long-running environments (Node.js/Docker)
+// If using Next.js/Vercel, move this inside the handler or use a singleton pattern
 (async () => {
-  try {
-    if (!client.isOpen) await client.connect();
-  } catch (error) {
-    console.error("Failed to connect to Redis:", error);
-  }
+  if (!client.isOpen) await client.connect();
 })();
 
 export async function POST(req) {
-  const { email } = await req.json();
-
-  // Validate email input
-  if (!email || !email.includes('@')) {
-    return new Response(
-      JSON.stringify({ error: "Invalid email address." }),
-      { status: 400 }
-    );
-  }
-
-  const encodedEmail = encodeURIComponent(email);
-  const key = `email:${encodedEmail}`;
-  const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-  const rateLimitWindow = 300; // 5 minutes
-
   try {
-    // Remove timestamps older than the rate limit window
-    await client.zRemRangeByScore(key, 0, currentTime - rateLimitWindow);
+    const { email } = await req.json();
 
-    // Count requests in the rate limit window
-    const count = await client.zCount(key, currentTime - rateLimitWindow, currentTime);
+    // Basic Validation
+    if (!email || !email.includes('@')) {
+      return new Response(JSON.stringify({ error: "Invalid email." }), { status: 400 });
+    }
 
-    if (typeof count !== 'number' || count < 1) {
-      // Add the current timestamp to the sorted set
-      await client.zAdd(key, { score: currentTime, value: `${currentTime}` });
+    const key = `rate_limit:${encodeURIComponent(email)}`;
+    const now = Date.now(); // Using milliseconds for higher precision
+    const windowMs = 300 * 1000; // 5 minutes in milliseconds
+    const limit = 5; // Maximum allowed requests per window
 
-      // Set expiry for the key
-      await client.expire(key, rateLimitWindow);
+    // 2. Atomic Transaction Execution
+    // We cleanup, count, and add in one "pipeline" to the server
+    const [removedCount, currentCount] = await client
+      .multi()
+      .zRemRangeByScore(key, 0, now - windowMs) // Remove old entries
+      .zCount(key, now - windowMs, '+inf')      // Count remaining entries
+      .exec();
+
+    if (currentCount < limit) {
+      // 3. Log the current request
+      // We add a random suffix so that multiple hits in the same ms don't overwrite each other
+      const requestId = `${now}-${crypto.randomBytes(4).toString('hex')}`;
+      
+      await client
+        .multi()
+        .zAdd(key, { score: now, value: requestId })
+        .expire(key, 300) // Keep the key alive for the duration of the window
+        .exec();
 
       return new Response(
-        JSON.stringify({ allowed: true }),
+        JSON.stringify({ 
+          allowed: true, 
+          remaining: limit - (currentCount + 1) 
+        }), 
         { status: 200 }
       );
     } else {
-      // Rate limit exceeded
+      // 4. Rate Limit Exceeded
       return new Response(
-        JSON.stringify({ allowed: false, message: "Rate limit exceeded. Please try again later." }),
+        JSON.stringify({ 
+          allowed: false, 
+          message: "Too many requests. Please wait 5 minutes." 
+        }), 
         { status: 429 }
       );
     }
   } catch (error) {
-    console.error("Redis operation failed:", error);
-    return new Response(
-      JSON.stringify({ error: "Internal Server Error. Please try again later." }),
-      { status: 500 }
-    );
+    console.error("Redis Error:", error);
+    return new Response(JSON.stringify({ error: "Server Error" }), { status: 500 });
   }
 }
