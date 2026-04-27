@@ -43,7 +43,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-orange-500/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-orange-400/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/html5.svg" alt="HTML5" width={50} height={50} />
+                            <Image
+                                src="/html5.svg"
+                                alt="HTML5"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                             />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">HTML</span>
                         </div>
@@ -54,7 +62,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-yellow-400/10
                             to-70% to-neutral-900/40 shadow-xl shadow-yellow-500/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/javascript.png" alt="JavaScript" width={50} height={50} className="saturate-200" />
+                            <Image
+                                src="/javascript.png"
+                                alt="JavaScript"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={ {height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">JavaScript</span>
                         </div>
@@ -65,7 +81,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-600/10
                             to-70% to-neutral-900/40 shadow-xl shadow-blue-500/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/ts.svg" alt="TypeScript" width={50} height={50} className="saturate-200" />
+                            <Image
+                                src="/ts.svg"
+                                alt="TypeScript"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">TypeScript</span>
                         </div>
@@ -76,7 +100,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-700/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-blue-600/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/css.svg" alt="CSS3" width={40} height={40} />
+                            <Image
+                                src="/css.svg"
+                                alt="CSS3"
+                                width={40}
+                                height={40}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">CSS</span>
                         </div>
@@ -87,7 +119,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-500/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-blue-500/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/react.svg" alt="React" width={50} height={50} />
+                            <Image
+                                src="/react.svg"
+                                alt="React"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">React</span>
                         </div>
@@ -98,7 +138,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-gray-500/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-gray-500/30 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/nextjs.svg" alt="Next.js" width={50} height={50} />
+                            <Image
+                                src="/nextjs.svg"
+                                alt="Next.js"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">Next.js</span>
                         </div>
@@ -112,7 +160,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-500/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-blue-300/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/c.svg" alt="C" width={50} height={50} />
+                            <Image
+                                src="/c.svg"
+                                alt="C"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">C</span>
                         </div>
@@ -123,7 +179,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-blue-400/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-blue-300/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/c++.svg" alt="C++" width={50} height={50} />
+                            <Image
+                                src="/c++.svg"
+                                alt="C++"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">C++</span>
                         </div>
@@ -135,7 +199,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-yellow-400/10
                                 via-blue-950/30 to-70% to-neutral-900/40 shadow-xl shadow-yellow-500/20 aspect-square justify-center items-center flex w-24 h-24">
-                                <Image src="/python.png" alt="Python3" width={50} height={50} className="saturate-150" />
+                                <Image
+                                    src="/python.png"
+                                    alt="Python3"
+                                    width={50}
+                                    height={50}
+                                    className="saturate-150"
+                                    style={{ height: 'auto' }}
+                                    priority={true}
+                                />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">Python</span>
                             </div>
@@ -147,7 +219,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-red-400/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-red-500/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/pytorch.png" alt="PyTorch" width={50} height={50} />
+                            <Image
+                                src="/pytorch.png"
+                                alt="PyTorch"
+                                width={50}
+                                height={50}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">PyTorch</span>
                         </div>
@@ -158,7 +238,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-orange-400/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-orange-500/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/tf.webp" alt="TensorFlow" width={40} height={40} />
+                            <Image
+                                src="/tf.webp"
+                                alt="TensorFlow"
+                                width={40}
+                                height={40}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">TensorFlow</span>
                         </div>
@@ -169,7 +257,15 @@ export default function LanguageBox() {
                             }`}>
                             <div className="border-2 border-stone-700 p-5 rounded-xl bg-gradient-to-t from-cyan-400/10
                                 to-70% to-neutral-900/40 shadow-xl shadow-teal-500/20 aspect-square justify-center items-center flex w-24 h-24">
-                            <Image src="/opencv.webp" alt="OpenCV" width={45} height={45} />
+                            <Image
+                                src="/opencv.webp"
+                                alt="OpenCV"
+                                width={45}
+                                height={45}
+                                className="saturate-200"
+                                style={{ height: 'auto' }}
+                                priority={true}
+                            />
                             </div>
                             <span className="text-zinc-200 text-sm mt-1">OpenCV</span>
                         </div>

@@ -11,7 +11,7 @@ export const metadata = {
   title: "Ryan Jung",
   description: "Ryan Jung's personal website",
   // image: "/profile.jpg",
-  url: "https://ryankwjung.com",
+  url: "https://ryankwjung.me",
 };
 
 export default function RootLayout({ children }) {
